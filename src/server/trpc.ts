@@ -74,3 +74,9 @@ export const taskRouter = t.router({
     }),
 
 });
+
+export const appRouter = t.router({
+  tarefas: taskRouter,
+});
+
+export type AppRouter = typeof appRouter;
