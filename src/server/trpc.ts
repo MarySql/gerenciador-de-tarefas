@@ -10,3 +10,7 @@ type Task = {
   description?: string; // descrição opcional.
   createdAt: number; // data como timestamp.
 };
+
+// Armazenamento em memória
+let tasks: Task[] = [];
+let taskId = 1;
