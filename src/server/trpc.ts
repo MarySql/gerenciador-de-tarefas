@@ -14,3 +14,12 @@ type Task = {
 // Armazenamento em memória
 let tasks: Task[] = [];
 let taskId = 1;
+
+// Rotas do CRUD
+export const taskRouter = t.router({
+
+  // Endpoint para retornar a lista de tarefas.
+  listarTarefas: t.procedure.query(() => tasks),
+
+
+});
