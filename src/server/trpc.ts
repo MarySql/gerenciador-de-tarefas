@@ -58,5 +58,19 @@ export const taskRouter = t.router({
     return tasks[index];
   }),
 
+    // Endpoint para remover uma tarefa.
+    deletarTarefa: t.procedure
+    .input(
+      z.object({
+        id: z.number(),
+      })
+    )
+    .mutation(({ input }) => {
+      const index = tasks.findIndex((t) => t.id === input.id);
+      if (index === -1) throw new Error('Erro: Tarefa não encontrada.');
+
+      const [tarefaDeletada] = tasks.splice(index, 1);
+      return { success: true, tarefaDeletada };
+    }),
 
 });
