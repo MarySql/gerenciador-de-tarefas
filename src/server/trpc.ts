@@ -40,4 +40,23 @@ export const taskRouter = t.router({
       return novaTarefa;
     }),
 
+     /*Endpoint para editar os dados de um tarefam retorna um erro se a tarefa não for encontrada*/
+  atualizarTarefa: t.procedure
+  .input(
+    z.object({
+      id: z.number(),
+      title: z.string().min(1, "O título é obrigatório"),
+      description: z.string().optional(),
+    })
+  )
+  .mutation(({ input }) => {
+    const index = tasks.findIndex((t) => t.id === input.id);
+    if (index === -1) throw new Error('Erro: Tarefa não encontrada.');
+
+    
+    tasks[index] = { ...tasks[index], ...input };
+    return tasks[index];
+  }),
+
+
 });
